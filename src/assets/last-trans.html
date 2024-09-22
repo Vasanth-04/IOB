@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOB NetBanking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px 5px 5px 0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #addButton {
+            background-color: #28a745;
+        }
+
+        #deleteAllButton {
+            background-color: #dc3545;
+        }
+
+        /* Your existing CSS styles */
+    </style>
+</head>
+
+<body>
+    <h3>Account Number - <span id="popupAccountNumber"></span></h3>
+    <input type="text" id="accountNumberInput">
+    <button id="addButton">Add Transaction</button><br>
+
+    <label for="date">Date:</label>
+    <input type="text" id="dateInput" name="date"><br>
+
+    <label for="narration">Narration:</label>
+    <input type="text" id="narrationInput" name="narration"><br>
+
+    <label for="dr_cr">DR/CR:</label>
+    <input type="text" id="drCrInput" name="dr_cr"><br>
+
+    <label for="amount">Amount:</label>
+    <input type="text" id="amountInput" name="amount"><br>
+
+    <button id="deleteAllButton">Delete All</button>
+
+    <table id="popupTransactionTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Narration</th>
+                <th>DR/CR</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        // Load existing account number from localStorage on page load
+        window.onload = function () {
+            var accountNumber = localStorage.getItem('accountNumber');
+            document.getElementById('popupAccountNumber').textContent = accountNumber || '';
+            document.getElementById('accountNumberInput').value = accountNumber || '';
+            updateTable(); // Call this to display existing transactions
+        };
+
+        document.getElementById('addButton').addEventListener('click', function () {
+            var dateValue = document.getElementById('dateInput').value;
+            var narrationValue = document.getElementById('narrationInput').value;
+            var drCrValue = document.getElementById('drCrInput').value;
+            var amountValue = document.getElementById('amountInput').value;
+
+            // Create a new transaction object only if all fields are filled
+            if (dateValue && narrationValue && drCrValue && amountValue) {
+                var transactionData = {
+                    date: dateValue,
+                    narration: narrationValue,
+                    drCr: drCrValue,
+                    amount: amountValue
+                };
+
+                // Retrieve existing transactions
+                var existingData = JSON.parse(localStorage.getItem('transactionData')) || [];
+                existingData.push(transactionData);
+                localStorage.setItem('transactionData', JSON.stringify(existingData));
+
+                updateTable(); // Update the displayed table
+                clearInputFields(); // Clear input fields after adding the data
+            } else {
+                alert("Please fill in all fields before adding a transaction.");
+            }
+        });
+
+        function updateTable() {
+            var tableBody = document.getElementById('popupTransactionTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            // Retrieve data from local storage
+            var storedData = JSON.parse(localStorage.getItem('transactionData')) || [];
+
+            // Loop through stored data and add rows to the table
+            storedData.forEach(function (data) {
+                var newRow = tableBody.insertRow();
+                newRow.insertCell(0).innerText = data.date;
+                newRow.insertCell(1).innerText = data.narration;
+                newRow.insertCell(2).innerText = data.drCr;
+                newRow.insertCell(3).innerText = data.amount;
+
+                // Create action buttons
+                var actionCell = newRow.insertCell(4);
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function () {
+                    // Remove the transaction
+                    deleteTransaction(data);
+                    updateTable(); // Refresh the table
+                };
+                actionCell.appendChild(deleteButton);
+            });
+        }
+
+        function deleteTransaction(transaction) {
+            var existingData = JSON.parse(localStorage.getItem('transactionData')) || [];
+            existingData = existingData.filter(function (data) {
+                return data.date !== transaction.date ||
+                    data.narration !== transaction.narration ||
+                    data.drCr !== transaction.drCr ||
+                    data.amount !== transaction.amount;
+            });
+            localStorage.setItem('transactionData', JSON.stringify(existingData));
+        }
+
+        function clearInputFields() {
+            document.getElementById('dateInput').value = '';
+            document.getElementById('narrationInput').value = '';
+            document.getElementById('drCrInput').value = '';
+            document.getElementById('amountInput').value = '';
+        }
+
+        // Event listener for deleting all transactions
+        document.getElementById('deleteAllButton').addEventListener('click', function () {
+            if (confirm("Are you sure you want to delete all transactions?")) {
+                localStorage.removeItem('transactionData'); // Clear all transactions from localStorage
+                updateTable(); // Refresh the table
+            }
+        });
+    </script>
+</body>
+
+</html>

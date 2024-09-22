@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="./logo.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/checkbalance.html">
+    <link rel="stylesheet" href="./assets/lasttransaction.html">
+    <link rel="stylesheet" href="./assets/timeout.html">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <title> IOB NetBanking </title>
+</head>
+
+<body>
+    <header>
+        <div id="iobnbpage" class="container">
+            <div class="header d-m-flex justify-content-between align">
+                <h1 id="logo" class="logo text-xs-center">
+                    <img src="./images/logo/logo.jpg" alt="IOB Net banking" class="d-md-block d-none">
+                    <!-- <img src="./images/logo/logo-mbl.jpg" alt="IOB Net banking" class="d-md-none d-block mx-auto mt-2"> -->
+                </h1>
+            </div>
+        </div>
+        <div class="header-name-password">
+            <table class="table table-borderless m-0 border-0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="./images/DP.png" width="55" height="55">
+                        </td>
+                        <td class="name-pad">
+                            <p class="mb-0" style="padding-bottom:5px;">
+                                Welcome,
+                                <span class="text-center" font-weight-bold><b id="username">HONEST RAJ A !!</b></span>
+                            </p>
+                            <div class="login">
+                                <hr class="hor-lin">
+                                <p class="m-0">
+                                    <span class="text-danger">
+                                        Last Login: <span id="date"></span> at <span id="time"></span>
+                                    </span>
+                                </p>
+                            </div>
+        </div>
+        <hr class="hor-lin">
+        <div class="nav-logout">
+            <a href="">Report Fraudlent Transactions</a>
+        </div>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-button">
+            <a href="" class="nav-btn">
+                <i class="fa-solid fa-circle-user"></i>
+                <p>Accounts</p>
+            </a>
+
+            <a href="" class="nav-btn1">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <p>funds transfer</p>
+            </a>
+            <a href="" class="nav-btn2">
+                <i class="fa-solid fa-user"></i>
+                <p>edit profile</p>
+            </a>
+            <a href="" class="nav-btn3">
+                <i class="fa-solid fa-user-clock"></i>
+                <p>bill paymenrs</p>
+            </a>
+            <a href="" class="nav-btn4">
+                <i class="fa-solid fa-receipt"></i>
+                <p>tax payments</p>
+            </a>
+            <a href="" class="nav-btn5">
+                <i class="fa-solid fa-address-card"></i>
+                <p>IOB cards</p>
+            </a>
+            <a href="" class="nav-btn6">
+                <i class="fa-solid fa-money-bill"></i>
+                <p>utility payment receipts</p>
+            </a>
+            <a href="" class="nav-btn7">
+                <i class="fa-regular fa-hospital"></i>
+                <p>IPO ASBA</p>
+            </a>
+            <a href="" class="nav-btn8">
+                <i class="fa-solid fa-receipt"></i>
+                <p>offers</p>
+            </a>
+            <a href="" class="nav-btn9">
+                <i class="fa-solid fa-address-card"></i>
+                <p>instant loans</p>
+            </a>
+        </div>
+        <div class="btn-logout">
+            <div class="btn-log">
+                <button id="logout-btn">logout</button>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <a href="">change password</a>
+        </div>
+    </nav>
+    <div class="red-line"></div>
+    <section>
+        <div class="container1">
+            <div class="contain-content">
+                <b>New</b>
+                <span id="element"></span>
+            </div>
+            <img src="./images/nps2.jpg" alt="image-logo" class="nps-img" height: 55px;>
+        </div>
+    </section>
+
+    <article class="article">
+        <div class="Accounts">
+            <div>
+                <p class="heading">accounts</p>
+            </div>
+            <div class="accounts-content">
+                <div id="nav">
+                    <ul>
+                        <li>
+                            <a href="#" class="box1"
+                                onclick="event.preventDefault(); openModal('myModal'); displayBalance()">Balance
+                                Enquiry</a>
+                        </li>
+                        <li>
+                            <a href="#" class="box1"
+                                onclick="event.preventDefault(); openModal1('myModal1'); displayTransactions()">Last Few
+                                Transactions</a>
+                        </li>
+                        <div class="sidebar">
+
+                            <li>
+                                <a href="#" class="box1">Account statement</a>
+                            </li>
+                            <li>
+                                <a href="#" class="box1">Cheque Book Request</a>
+                            </li>
+                            <li class="dropdown">
+                                <button onclick="toggleDropdown()" class="dropdown-btn">Cheque Services <i
+                                        class="fa-solid fa-angle-down arrow"></i></button>
+                                <div class="dropdown-content" id="dropdownMenu">
+                                    <a class="dropdown-item" href="#">- inward cleaning details</a>
+                                    <a class="dropdown-item" href="#">- outward clearing details</a>
+                                    <a class="dropdown-item" href="#">- search cheque paid</a>
+                                    <a class="dropdown-item" href="#">- positive pay</a>
+                                    <a class="dropdown-item" href="#">- view positive pay status</a>
+                                </div>
+                            </li>
+                            <li class="dropdown1">
+                                <button onclick="toggleDropdown1()" class="dropdown-btn1">Pension View<i
+                                        class="fa-solid fa-angle-down arrow1"></i></button>
+                                <div class="dropdown-content1" id="dropdownMenu1">
+                                    <a class="dropdown-item1" href="#">- civil pension view</a>
+                                    <a class="dropdown-item1" href="#">- railway pension</a>
+
+                                    <a class="dropdown-item1" href="#">- defence pension</a>
+
+                                    <a class="dropdown-item1" href="#">- telecom pension</a>
+                                </div>
+                            </li>
+                            <li class="dropdown2">
+                                <button onclick="toggleDropdown2()" class="dropdown-btn2">deposit <i
+                                        class="fa-solid fa-angle-down arrow2"></i></button>
+                                <div class="dropdown-content2" id="dropdownMenu2">
+                                    <a class="dropdown-item2" href="#">- view deposit</a>
+                                    <a class="dropdown-item2" href="#">- view deposit-peroid wise</a>
+                                    <a class="dropdown-item2" href="#">- open deposit</a>
+                                    <a class="dropdown-item2" href="#">- close/renew deposit</a>
+                                    <a class="dropdown-item2" href="#">- submit form 15G/H</a>
+                                    <a class="dropdown-item2" href="#">- close/renew deposit</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="" class="box1"> Nomination</a>
+                            </li>
+
+                            <li class="dropdown3">
+                                <button onclick="toggleDropdown3()" class="dropdown-btn3">Schemes Under Government
+                                    Business <i class="fa-solid fa-angle-down arrow3"></i></button>
+                                <div class="dropdown-content3" id="dropdownMenu3">
+                                    <a class="dropdown-item3" href="#">- national personal scheme</a>
+                                    <a class="dropdown-item3" href="#">- sovereign gold scheme Subscribe</a>
+                                    <a class="dropdown-item3" href="#">- Apply APY</a>
+                                    <a class="dropdown-item3" href="#">- Apply SSY</a>
+                                    <a class="dropdown-item3" href="#">- view SSY application</a>
+                                    <a class="dropdown-item3" href="#">- open PPF account </a>
+                                    <a class="dropdown-item3" href="#">- PPF Loan/Deposit</a>
+                                    <a class="dropdown-item3" href="#">- PPF Certificate</a>
+
+
+                                </div>
+                            </li>
+                            <li class="dropdown4">
+                                <button onclick="toggleDropdown4()" class="dropdown-btn4">Trade Finance View <i
+                                        class="fa-solid fa-angle-down arrow4"></i></button>
+                                <div class="dropdown-content4" id="dropdownMenu4">
+                                    <a class="dropdown-item4" href="#">-packing credit</a>
+                                    <a class="dropdown-item4" href="#">-bills</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="" class="box1">Stop Cheque Payment</a>
+                            </li>
+                            <li class="dropdown5">
+                                <button onclick="toggleDropdown5()" class="dropdown-btn5"> NSDL Insta Demat Account <i
+                                        class="fa-solid fa-angle-down arrow5 "></i></button>
+                                <div class="dropdown-content5" id="dropdownMenu5">
+                                    <a class="dropdown-item5" href="#">- open demat account</a>
+                                    <a class="dropdown-item5" href="#">- open trading account</a>
+                                </div>
+                            </li>
+
+                            <li class="dropdown6">
+                                <button onclick="toggleDropdown6()" class="dropdown-btn6">Request Services <i
+                                        class="fa-solid fa-angle-down arrow6 "></i></button>
+                                <div class="dropdown-content6" id="dropdownMenu6">
+                                    <a class="dropdown-item3" href="#">- View Service Request</a>
+                                    <a class="dropdown-item3" href="#">- Request for Locker</a>
+                                    <a class="dropdown-item3" href="#">- Request for DEMAT account</a>
+                                    <a class="dropdown-item3" href="#">- Request for Forex/Travel card</a>
+                                    <a class="dropdown-item3" href="#">- Request for Attested Bank Statement</a>
+                                    <a class="dropdown-item3" href="#">- Request For Issuance of Solvency Certificate
+                                    </a>
+                                    <a class="dropdown-item3" href="#">- Request for Atal pension Yojana</a>
+                                    <a class="dropdown-item3" href="#">- Request for Email Statement</a>
+                                    <a class="dropdown-item3" href="#">- Request for Monthly Email Statement</a>
+                                    <a class="dropdown-item3" href="#">- Request for change of Branch</a>
+                                    <a class="dropdown-item3" href="#">- Request for Cash Delivery</a>
+                                    <a class="dropdown-item3" href="#">- Request for Cash pick up</a>
+                                    <a class="dropdown-item3" href="#">- Request for Cheque Pick Up</a>
+                                    <a class="dropdown-item3" href="#">- Request for DD Delivery</a>
+                                    <a class="dropdown-item3" href="#">- Request for DD Pick up</a>
+                                    <a class="dropdown-item3" href="#">- Request for Deregistration of Printed
+                                        Statement</a>
+                                    <a class="dropdown-item3" href="#">- Request for Activate Passbook</a>
+                                    <a class="dropdown-item3" href="#">- Request for Deactivate Passbook</a>
+                                    <a class="dropdown-item3" href="#">- Locker availability</a>
+                                    <a class="dropdown-item3" href="#">- Request TIFD Booklet</a>
+                                    <a class="dropdown-item3" href="#">- Apply for POS</a>
+                                    <a class="dropdown-item3" href="#">- Apply for LC</a>
+                                    <a class="dropdown-item3" href="#">- Apply for LG</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="box1">Register Your Digital Certificate</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" class="box1">Request for Jewel
+                                    Loan</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" class="box1">Register for Door Step
+                                    Banking</a>
+                            </li>
+                            <li class="dropdown8">
+                                <button onclick="toggleDropdown8()" class="dropdown-btn8">Request for mutual fund <i
+                                        class="fa-solid fa-angle-down arrow8 "></i></button>
+                                <div class="dropdown-content8" id="dropdownMenu8">
+                                    <a class="dropdown-item8" href="#"> - Nippon Mutual Fund</a>
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <section>
+                <div class="danger-box">
+                    <div class="dang-icon">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p>Important Notice</p>
+                    </div>
+                    <div class="dan-maincon">
+                        <p>In case OTP is not received within 30 seconds, please use Resend OTP option. OTP will be
+                            received as Normal SMS instead of Flash Message</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside>
+            <div class="container3">
+                <div class="con3-con">
+                    <h3>Welcome to internet banking</h3>
+                    <div class="wel-line"></div>
+                    <div class="wel-line1"></div>
+                </div>
+                <div class="con-danger">
+                    <!-- <div class="con-danger-para">
+                        <p>Your Password will expire in next 1 days. Kindly change using Edit Profile -> Change Password for security reasons.</p>
+                    </div> -->
+                    <div class="con-danger-para1">
+                        <p> Dear Customer,<a href="">Click here </a> to avail Loan against your deposits.</p>
+                    </div>
+                    <div class="con-danger-para2">
+                        <p>Dear Customer, <a href="">Click here</a> for UPI PayNow India Singapore Remittance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acnt-summary">
+                <div class="acc-smry">
+                    <h3>Account summary</h3>
+                    <div class="wel-line2"></div>
+                </div>
+                <div class="acc-holder">
+                    <table rowspan="5" colspan="2">
+                        <thead class="table">
+                            <tr>
+                                <th class="tab-con">account no.</th>
+                                <th class="tab-con">nick name</th>
+                                <th class="tab-con">scheme type</th>
+                                <th class="tab-con">currrent balance</th>
+                                <th class="tab-con">last few transactions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <th class="tab-con">248201000009649</th>
+                                <td class="tab-con1">eel</td>
+                                <td class="tab-con">SBA</td>
+
+
+                                <td class="tab-con">
+                                    <button id="myBtn" onclick="openModal('myModal'); displayBalance()">Balance</button>
+                                </td>
+                                <!-- Button to trigger the modal -->
+                                <td class="tab-con">
+                                    <button id="myBtn1" onclick="openModal('myModal1'); displayTransactions()">Last Few
+                                        Transactions</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="view-acc">
+                    <a href="">view all loan accounts</a>
+                    <a href="">view all deposit account</a>
+                </div>
+            </div>
+            <!-- The Modal -->
+
+            <!-- Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <span id="modal-head1">Balance</span>
+                        <span class="close" onclick="document.getElementById('myModal').style.display='none'">
+                            <span id="close-hide">close</span>
+                            <span id="close-icon">x</span>
+                        </span>
+                    </div>
+                    <div id="acc-bal">
+                        <h3>Account Number - <span id="accountNumberSpan"></span></h3>
+                    </div>
+                    <div class="account-details">
+                        <table border="1">
+                            <tr>
+                                <th class="tab-con2">Available Balance</th>
+                                <th class="tab-con2">Current Balance</th>
+                                <th class="tab-con2">Monthly Avg Balance</th>
+                            </tr>
+                            <tr>
+                                <td class="tab-con3" id="availableBalanceData"></td>
+                                <td class="tab-con3" id="currentBalanceData"></td>
+                                <td class="tab-con3" id="monthlyAvgBalanceData"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Button to trigger the modal -->
+            <!-- balance end here -->
+
+            <!-- last few tnxs -->
+            <!-- Popup box -->
+            <div id="myModal1" class="modal1">
+                Modal content
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <span id="modal-head1">Last Ten Transactions During Last 6 Months Period</span>
+                        <span class="close1">
+                            <span id="close-hide1">Close</span>
+                            <span id="close-icon1">x</span>
+                        </span>
+                    </div>
+                    <div id="overflow">
+                        <div id="acc-bal1">
+                            <h3>Account Number - <span id="popupAccountNumber"></span></h3>
+                        </div>
+                        <div class="account-details1">
+                            <table id="popupTransactionTable" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th id="tab-head1">Date</th>
+                                        <th id="tab-head2">Narration</th>
+                                        <th id="tab-head3">DR/CR</th>
+                                        <th id="tab-head4">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionData">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-footer">
+                            <span>
+                                For detailed Statement proceed with
+                            </span>
+                            <a href="#" class="foot-link">Account Statement Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- last few tnxs ends -->
+
+
+            <div id="warning">
+                <div id="warning-box1">
+                    <div class="war-icon">
+                        <b>x</b>
+                    </div>
+                    <div class="war-cont">
+                        <p>Marketing Offers</p>
+                        <div class="war-line"></div>
+                        <div>
+                            <li> Dear Customer, you are eligible for Vehicle Loan, we request you to contact your
+                                nearest branch of IOB to avail the facility. "Terms and Conditions apply!.</li>
+                            <li> Dear Customer, IOB is offering concession at Processing charges for Housing Loan, we
+                                request you to contact your nearest branch of IOB to avail the facility. *Terms and
+                                Conditions apply!</li>
+                            <li>Dear Customer, IOB is offering Gold Loan at very competitive ROI, we request you to
+                                contact your nearest branch of IOB to avail the facility. "Terms and Conditions apply!
+                            </li>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="warning-box2">
+                <div class="war-icon">
+                    <b>x</b>
+                </div>
+                <div class="war-cont">
+                    <p>other Services</p>
+                    <div class="war-line"></div>
+                    <div>
+                        <li>Please use Internet Banking for all Bill payments, Utility payments and online Transactions
+                            !!!
+                        </li>
+                        <li> Now Enroll PMJJBY/PMSBY under Utility Payments/Receipts > JanSuraksha Schemes > Subscribe
+                        </li>
+                        <li>We make your Debit Card more Secure with New EMV Chip Card !!!</li>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </article>
+
+    <footer>
+        <div id="footer">
+            <div id="footer-content">
+                <p>terms & Conditions</p>
+                <p>contact us</p>
+                <p> toll free 1800-4254445</p>
+            </div>
+            <div class="copyright">
+                <p>&copy IOB all rights reserved 2019</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js">
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Timeout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%; /* Make the container responsive */
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            font-size: 48px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .tips {
+            margin-top: 30px;
+            background-color: #eaf2f8;
+            padding: 20px;
+            border-radius: 8px;
+            color: #2980b9;
+        }
+
+        .tips h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .tips ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tips ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .refresh-button,
+        .reopen-button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+            width: 100%; /* Make the button full width */
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        .refresh-button:hover,
+        .reopen-button:hover {
+            background-color: #2980b9;
+        }
+
+        .spacer {
+            height: 20px; /* Adds space between the buttons */
+        }
+    </style>
+    <script>
+        // Countdown timer
+        let countdownSeconds = 10;
+        function updateCountdown() {
+            document.getElementById('countdown').innerText = countdownSeconds;
+            if (countdownSeconds > 0) {
+                countdownSeconds--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                document.getElementById('reopen-link').style.display = 'block';
+            }
+        }
+        window.onload = updateCountdown;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Session Timeout</h1>
+        <p>Your session has expired due to inactivity. Please reopen the website to continue.</p>
+        <div class="countdown">
+            <span id="countdown">10</span> seconds left
+        </div>
+        <a class="refresh-button" onclick="location.reload();">Refresh Page</a>
+        
+        <!-- Spacer between buttons -->
+        <div class="spacer"></div>
+        
+        <a href="./IOB.html" id="reopen-link" class="reopen-button" style="display:none;">
+            Reopen Website
+        </a>
+        
+        <div class="tips">
+            <h2>Tips for Staying Secure Online</h2>
+            <ul>
+                <li>Keep your browser and software up to date.</li>
+                <li>Use strong, unique passwords for different sites.</li>
+                <li>Avoid clicking on suspicious links or attachments.</li>
+                <li>Enable two-factor authentication when possible.</li>
+                <li>Regularly clear your browser's cache and cookies.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" defer></script>
+    <title>IOB-check-Balance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber"><br><br>
+
+    <label for="availableBalance">Available Balance:</label>
+    <input type="text" id="availableBalance"><br><br>
+
+    <label for="currentBalance">Current Balance:</label>
+    <input type="text" id="currentBalance"><br><br>
+
+    <label for="monthlyAvgBalance">Monthly Avg Balance:</label>
+    <input type="text" id="monthlyAvgBalance"><br><br>
+
+    <button onclick="saveData()">Add</button>
+
+    <script src="script.js">
+        // /balance box//
+        // Load values from localStorage on page load
+        window.onload = function () {
+            loadData();
+        };
+
+        function loadData() {
+            document.getElementById('accountNumber').value = localStorage.getItem('accountNumber') || '';
+            document.getElementById('availableBalance').value = localStorage.getItem('availableBalance') || '';
+            document.getElementById('currentBalance').value = localStorage.getItem('currentBalance') || '';
+            document.getElementById('monthlyAvgBalance').value = localStorage.getItem('monthlyAvgBalance') || '';
+        }
+
+        function saveData() {
+            var accountNumber = document.getElementById('accountNumber').value;
+            var availableBalance = document.getElementById('availableBalance').value;
+            var currentBalance = document.getElementById('currentBalance').value;
+            var monthlyAvgBalance = document.getElementById('monthlyAvgBalance').value;
+
+            // Check if all fields are filled
+            if (!accountNumber || !availableBalance || !currentBalance || !monthlyAvgBalance) {
+                alert('Please fill in all fields before saving.');
+                return;
+            }
+
+            // Store data in localStorage
+            localStorage.setItem('accountNumber', accountNumber);
+            localStorage.setItem('availableBalance', availableBalance);
+            localStorage.setItem('currentBalance', currentBalance);
+            localStorage.setItem('monthlyAvgBalance', monthlyAvgBalance);
+
+            // Send data to backend
+            fetch('http://localhost:3000/save-balance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ accountNumber, availableBalance, currentBalance, monthlyAvgBalance })
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    alert('Balance saved successfully');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error saving balance to backend');
+                });
+        }
+        // Function to display balance popup
+        function displayBalance() {
+            // Retrieve data from localStorage
+            var accountNumber = localStorage.getItem('accountNumber');
+            var availableBalance = localStorage.getItem('availableBalance');
+            var currentBalance = localStorage.getItem('currentBalance');
+            var monthlyAvgBalance = localStorage.getItem('monthlyAvgBalance');
+
+            // Update modal with retrieved data
+            document.getElementById('accountNumberSpan').innerText = accountNumber || '';
+            document.getElementById('availableBalanceData').innerText = availableBalance || '';
+            document.getElementById('currentBalanceData').innerText = currentBalance || '';
+            document.getElementById('monthlyAvgBalanceData').innerText = monthlyAvgBalance || '';
+
+            // Display the modal
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            var accountNumber = localStorage.getItem('accountNumber');
+            fetch(`http://localhost:3000/get-balance/${accountNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('availableBalance').value = data.availableBalance || '';
+                    document.getElementById('currentBalance').value = data.currentBalance || '';
+                    document.getElementById('monthlyAvgBalance').value = data.monthlyAvgBalance || '';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        }
+    </script>
+
+</body>
+
+</html>
